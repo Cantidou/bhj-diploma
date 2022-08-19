@@ -34,17 +34,19 @@ class TransactionsPage {
    * */
 
   registerEvents() {
-    const transactionRemove = this.element.querySelector('.transaction__remove');
     const removeAccount = this.element.querySelector('.remove-account');
+
     removeAccount.onclick = () => {
       this.removeAccount();
     }
 
-    if (transactionRemove !== null) {
-      transactionRemove.onclick = () => {
-        this.removeTransaction(id);
-      } //передавать индентификатор
-    }
+    this.element.addEventListener('click', e => {
+      const removeTransactionButton = e.target.closest('.transaction__remove')
+
+      if (!removeTransactionButton) return;
+
+      this.removeTransaction(removeTransactionButton.getAttribute('data-id'));
+    })
   }
 
   /**
@@ -59,13 +61,14 @@ class TransactionsPage {
   removeAccount() {
     if (this.lastOptions) {
       if (confirm("Вы действительно хотите удалить счёт?")) {
+        console.log(this.lastOptions.account_id);
         Account.remove({id: this.lastOptions.account_id}, (err, resp) => {
           if (resp && resp.success) {
             App.updateWidgets();
             App.updateForms();
+            this.clear();
           }
         })
-        this.clear();
       }
     }
   }
@@ -76,7 +79,7 @@ class TransactionsPage {
    * По удалению транзакции вызовите метод App.update(),
    * либо обновляйте текущую страницу (метод update) и виджет со счетами
    * */
-  removeTransaction( id ) {
+  removeTransaction(id) {
     if (confirm("Вы действительно хотите удалить транзакцию?")) {
       Transaction.remove(id, (err, resp) => {
         if (resp && resp.success) {
@@ -100,10 +103,8 @@ class TransactionsPage {
           this.renderTitle(resp.data.name);
         }
       })
-      Transaction.list(User.current(), (err, resp) => {
-          console.log(User.current());
-          console.log(resp);
-          // QUESTION: почему возвращает пустой объект?
+      const data = {addUrl: '?account_id=' + options.account_id};
+      Transaction.list(data, (err, resp) => {
         if (resp && resp.success) {
           this.renderTransactions(resp.data)
         }
@@ -151,7 +152,7 @@ class TransactionsPage {
                       <span class="fa fa-money fa-2x"></span>
                   </div>
                   <div class="transaction__info">
-                      <h4 class="transaction__title">Новый будильник</h4>
+                      <h4 class="transaction__title">${item.name}</h4>
                       <!-- дата -->
                       <div class="transaction__date">${this.formatDate(item.created_at)}</div>
                   </div>
@@ -176,12 +177,11 @@ class TransactionsPage {
    * используя getTransactionHTML
    * */
   renderTransactions(data){
+    this.element.querySelector('.content').innerHTML = '';
+
     const content = this.element.querySelector('.content');
-    for (let i = 0; i < data.length; i++) {
-      content.insertAdjacentHTML('beforeend', this.getTransactionHTML(data[i]));
-    }
-    /*data.forEach(el => {
+    data.forEach(el => {
       content.insertAdjacentHTML('beforeend', this.getTransactionHTML(el))
-    })*/
+    })
   }
 }

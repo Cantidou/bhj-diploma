@@ -41,6 +41,7 @@ class Entity {
       url: this.URL,
       method: 'DELETE',
       data,
+      responseType: 'json',
       callback
     });
   }
