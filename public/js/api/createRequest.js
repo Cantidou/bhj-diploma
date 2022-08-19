@@ -76,8 +76,12 @@
          try {
              if (options.method == 'DELETE') {
                  if (options.data != null) {
+                   let formData = new FormData;
+                   for (let key in options.data) {
+                       formData.append(key, options.data[key]);
+                   }
                      xhr.open(options.method, options.url); // + options.data удалил
-                     xhr.send();
+                     xhr.send(formData);
                  }
                  else {
                      xhr.open(options.method, options.url);

@@ -42,7 +42,6 @@ class TransactionsPage {
 
     this.element.addEventListener('click', e => {
       const removeTransactionButton = e.target.closest('.transaction__remove')
-
       if (!removeTransactionButton) return;
 
       this.removeTransaction(removeTransactionButton.getAttribute('data-id'));
@@ -61,7 +60,6 @@ class TransactionsPage {
   removeAccount() {
     if (this.lastOptions) {
       if (confirm("Вы действительно хотите удалить счёт?")) {
-        console.log(this.lastOptions.account_id);
         Account.remove({id: this.lastOptions.account_id}, (err, resp) => {
           if (resp && resp.success) {
             App.updateWidgets();
@@ -81,7 +79,7 @@ class TransactionsPage {
    * */
   removeTransaction(id) {
     if (confirm("Вы действительно хотите удалить транзакцию?")) {
-      Transaction.remove(id, (err, resp) => {
+      Transaction.remove({id: id}, (err, resp) => {
         if (resp && resp.success) {
           App.update()
         }

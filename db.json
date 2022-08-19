@@ -23,11 +23,6 @@
       "name": "Бизнес",
       "user_id": "1",
       "id": "3"
-    },
-    {
-      "name": "Банк",
-      "user_id": "1",
-      "id": "cb64olj7ol6xpwx7p"
     }
   ],
   "transactions": [
@@ -140,40 +135,13 @@
       "user_id": "1"
     },
     {
-      "id": "cb64ollckl6z01hc6",
+      "id": "cb64ol3owl70q5zud",
       "type": "income",
-      "name": "111",
-      "sum": 5000,
+      "name": "test1",
+      "sum": 100,
       "account_id": "cb64olj7ol6xpwx7p",
       "user_id": "1",
-      "created_at": "2022-08-18T12:08:45.317Z"
-    },
-    {
-      "id": "cb64ollckl6z02he0",
-      "type": "expense",
-      "name": "123",
-      "sum": 5000,
-      "account_id": "cb64olj7ol6xpwx7p",
-      "user_id": "1",
-      "created_at": "2022-08-18T12:09:32.040Z"
-    },
-    {
-      "id": "cb64ollqol707uf3x",
-      "type": "income",
-      "name": "test",
-      "sum": 2000,
-      "account_id": "cb64olj7ol6xpwx7p",
-      "user_id": "1",
-      "created_at": "2022-08-19T08:34:58.940Z"
-    },
-    {
-      "id": "cb64ollqol707urzl",
-      "type": "expense",
-      "name": "test3",
-      "sum": 300,
-      "account_id": "cb64olj7ol6xpwx7p",
-      "user_id": "1",
-      "created_at": "2022-08-19T08:35:15.633Z"
+      "created_at": "2022-08-19T17:07:52.117Z"
     }
   ]
 }
