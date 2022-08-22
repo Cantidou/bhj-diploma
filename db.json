@@ -23,6 +23,16 @@
       "name": "Бизнес",
       "user_id": "1",
       "id": "3"
+    },
+    {
+      "name": "test1",
+      "user_id": "cb64olc2wl6xpd1s2",
+      "id": "cb64ol1n0l754i9bw"
+    },
+    {
+      "name": "test3",
+      "user_id": "cb64olc2wl6xpd1s2",
+      "id": "cb64olg5kl754syfy"
     }
   ],
   "transactions": [
