@@ -1,9 +1,12 @@
 {
+  "homepage": "http://yuribenjamin.github.io/my-app",
   "name": "bhj-diploma",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "start": "nodemon index.js --ignore db.json",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
